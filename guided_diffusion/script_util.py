@@ -164,7 +164,7 @@ def create_model(
         attention_ds.append(image_size // int(res))
 
 
-    print("hello world 1234")
+    #print("hello world 1234")
 
     return UNetModel(
         image_size=image_size,
