@@ -163,6 +163,9 @@ def create_model(
     for res in attention_resolutions.split(","):
         attention_ds.append(image_size // int(res))
 
+
+    print("hello world 1234")
+
     return UNetModel(
         image_size=image_size,
         in_channels=3,
