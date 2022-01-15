@@ -5,8 +5,6 @@ https://github.com/hojonathanho/diffusion/blob/1e0dceb3b3495bbe19116a5e1b3596cd0
 Docstrings have been added, as well as DDIM sampling and a new collection of beta schedules.
 """
 
-import sys
-
 import enum
 import math
 
@@ -617,19 +615,10 @@ class GaussianDiffusion:
             init_image = th.zeros_like(img)
 
         indices = list(range(self.num_timesteps - skip_timesteps))[::-1]
-        with open('logfile_test.txt', 'w+') as f:
-            sys.stdout = f # Change the standard output to the file we created.
-            print('opening log file.')
-            print("HELLO?!")
-            print(init_image)
-            if init_image is not None:
-                print("test")
-                print(shape)
-                print(shape[0])
-                print(indices[0])
-                my_t = th.ones([shape[0]], device=device, dtype=th.long) * indices[0]
-                img = self.q_sample(init_image, my_t, img)
-            sys.stdout = original_stdout # Reset the standard output to its original value
+
+        if init_image is not None:
+            my_t = th.ones([shape[0]], device=device, dtype=th.long) * indices[0]
+            img = self.q_sample(init_image, my_t, img)
 
         if progress:
             # Lazy import so that we don't depend on tqdm.
