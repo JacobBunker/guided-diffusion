@@ -615,8 +615,12 @@ class GaussianDiffusion:
             init_image = th.zeros_like(img)
 
         indices = list(range(self.num_timesteps - skip_timesteps))[::-1]
-
+        print("HELLO?!")
         if init_image is not None:
+            print("test")
+            print(shape)
+            print(shape[0])
+            print(indices[0])
             my_t = th.ones([shape[0]], device=device, dtype=th.long) * indices[0]
             img = self.q_sample(init_image, my_t, img)
 
